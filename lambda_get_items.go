@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/expression"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	//"github.com/gorilla/mux"
 )
 
 type Person struct {
@@ -29,7 +28,6 @@ type Schedule struct {
 // Declare a new DynamoDB instance. Note that this is safe for concurrent
 // use.
 func getItems(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	//min_rating := 0.0
 	User := request.QueryStringParameters["email"]
 
     // Initialize a session in us-west-2 that the SDK will use to load
@@ -39,8 +37,6 @@ func getItems(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResp
     )
 
     if err != nil {
-        //fmt.Println("Got error creating session:")
-        //fmt.Println(err.Error())
         return events.APIGatewayProxyResponse{
 			Body:       "Some error occured",
 			StatusCode: 400,
@@ -49,16 +45,7 @@ func getItems(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResp
 
     // Create DynamoDB client
     svc := dynamodb.New(sess)
-
-    // Create the Expression to fill the input struct with.
-    // Get all movies in that year; we'll pull out those with a higher rating later
     filt := expression.Name("User").Equal(expression.Value(User))
-
-    // Or we could get by ratings and pull out those with the right year later
-    //    filt := expression.Name("info.rating").GreaterThan(expression.Value(min_rating))
-
-    // Get back the title, year, and rating
-    //proj := expression.NamesList(expression.Name("title"), expression.Name("year"), expression.Name("info.rating"))
 
     expr, err := expression.NewBuilder().WithFilter(filt).Build()
 
@@ -74,7 +61,6 @@ func getItems(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResp
         ExpressionAttributeNames:  expr.Names(),
         ExpressionAttributeValues: expr.Values(),
         FilterExpression:          expr.Filter(),
-        //ProjectionExpression:      expr.Projection(),
         TableName:                 aws.String("UserEvent"),
     }
 
@@ -99,7 +85,6 @@ func getItems(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResp
 				StatusCode: 400,
 			}, nil
 		}
-		//json.NewEncoder(request).Encode(item)
 	}
 	b, err := json.Marshal(result.Items)
 	if err != nil {
