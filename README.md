@@ -2,7 +2,7 @@
 It support only Add item and get item using DynamoDB.
 
 ```
-API TO get users https://i5imc6al18.execute-api.us-east-2.amazonaws.com/deplopment/eventFunction?email={email}
+API TO get users https://i5imc6al18.execute-api.us-east-2.amazonaws.com/api/eventFunction?email={email}
 ```
 
 **Sample Payload**
@@ -22,7 +22,7 @@ Body {
 ```
 **Sample Response**
 ```
-API:- GET https://i5imc6al18.execute-api.us-east-2.amazonaws.com/deplopment/eventFunction?email=xyz@gmail.com
+API:- GET https://i5imc6al18.execute-api.us-east-2.amazonaws.com/api/eventFunction?email=xyz@gmail.com
 Response [{
     "ID": 7,
     "name": "Test name ",
