@@ -4,7 +4,7 @@ It support only Add item and get item using DynamoDB.
 **Sample Payload**
 ```
 API:- POST http://localhost:6000/event
-{
+Body {
     "ID": 7,
     "name": "Test name ",
     "description": "This is a test",
@@ -18,8 +18,8 @@ API:- POST http://localhost:6000/event
 ```
 **Sample Response**
 ```
-API:- POST http://localhost:6000/event/xyz@gmail.com
-{
+API:- GET http://localhost:6000/event/xyz@gmail.com
+Response {
     "ID": 7,
     "name": "Test name ",
     "description": "This is a test",
