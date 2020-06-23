@@ -1,6 +1,10 @@
 # go-backend-project
 It support only Add item and get item using DynamoDB.
 
+```
+API TO get users https://i5imc6al18.execute-api.us-east-2.amazonaws.com/deplopment/eventFunction
+```
+
 **Sample Payload**
 ```
 API:- POST http://localhost:6000/event
